@@ -14,7 +14,17 @@ const server = http.createServer((req, res) => {
   }
 
   if (url === '/message' && method.toLocaleLowerCase() === 'post') {
-    fs.writeFileSync('message.txt', 'Dummy text');
+    const body = [];
+    req.on('data', (chunck) => {
+      console.log(chunck);
+      body.push(chunck);
+    });
+    req.on('end', () => {
+      const parsedBody = Buffer.concat(body).toString();
+      const message = parsedBody.split('=')[1];
+      fs.writeFileSync('message.txt', message);
+      console.log(parsedBody);
+    })
     res.statusCode = 302; // redirection status
     res.setHeader('Location', '/');
     return res.end();

@@ -1,7 +1,6 @@
-const http = require('http');
 const fs = require('fs');
 
-const server = http.createServer((req, res) => {
+const requestHandler = (req, res) => {
   const url = req.url;
   const method = req.method;
 
@@ -36,6 +35,16 @@ const server = http.createServer((req, res) => {
   res.write(`<body><h1>Welcome to my first node.js Server!</h1><h1>${JSON.stringify(req.headers)}</h1></body>`);
   res.write('</html>');
   res.end();
-});
+}
 
-server.listen(3000);
+module.exports = requestHandler;
+
+// module.exports = {
+//   handler: requestHandler,
+//   someTxt: 'test text'
+// }
+
+// module.exports.handler = requestHandler;
+// module.exports.someTxt = 'test text';
+
+// exports.handler = requestHandler;

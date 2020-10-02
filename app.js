@@ -1,8 +1,25 @@
 const http = require('http');
+const fs = require('fs');
 
 const server = http.createServer((req, res) => {
-  console.log(req.url, req.method, req.headers);
-  // process.exit(); // stops Event loop > stops listener
+  const url = req.url;
+  const method = req.method;
+
+  if (url === '/') {
+    res.write('<html>');
+    res.write('<head><title>My First Node Page</title></head>');
+    res.write(`<body><form method='POST' action='/message'><input type='text' name='message'/><button type='submit'>Send</button></form></body>`);
+    res.write('</html>');
+    return res.end();
+  }
+
+  if (url === '/message' && method.toLocaleLowerCase() === 'post') {
+    fs.writeFileSync('message.txt', 'Dummy text');
+    res.statusCode = 302; // redirection status
+    res.setHeader('Location', '/');
+    return res.end();
+  }
+
   res.setHeader('Content-type', 'text/html');
   res.write('<html>');
   res.write('<head><title>My First Node Page</title></head>');

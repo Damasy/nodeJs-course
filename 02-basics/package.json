@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/Damasy/nodeJs-course/issues"
   },
-  "homepage": "https://github.com/Damasy/nodeJs-course#readme"
+  "homepage": "https://github.com/Damasy/nodeJs-course#readme",
+  "dependencies": {
+    "nodemon": "^2.0.4"
+  }
 }

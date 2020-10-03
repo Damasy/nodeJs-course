@@ -1,0 +1,28 @@
+{
+  "name": "node-complete-guide",
+  "version": "1.0.0",
+  "description": "Complete guide course for node.js bu maxmillian",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "start-server": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Damasy/nodeJs-course.git"
+  },
+  "keywords": [
+    "nodejs",
+    "complete",
+    "guide",
+    "max",
+    "maximillian"
+  ],
+  "author": "Ahmed Damasy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Damasy/nodeJs-course/issues"
+  },
+  "homepage": "https://github.com/Damasy/nodeJs-course#readme"
+}

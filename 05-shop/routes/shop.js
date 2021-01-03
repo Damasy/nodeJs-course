@@ -3,10 +3,14 @@ const rootDir = require('../utils/path')
 
 const express = require('express');
 
+const adminData = require('./admin')
+
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  res.sendFile(path.join(rootDir, 'views', 'shop.html'))
+  const products =  adminData.products;
+  // res.sendFile(path.join(rootDir, 'views', 'shop.html')) // static files
+  res.render('shop', {prods: products, pageTitle: 'Shop', path: '/'}) // dynamic files
 });
 
 module.exports = router;

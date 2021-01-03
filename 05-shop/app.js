@@ -2,7 +2,7 @@ const path = require("path");
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const expressHbs = require("express-handlebars");
+// const expressHbs = require("express-handlebars");
 
 const app = express();
 
@@ -12,16 +12,17 @@ const app = express();
 // extname as .handlebars
 // defaultLayout as main-layout as the
 // layoutsDir as view/layouts.
-app.engine(
-  "hbs",
-  expressHbs({
-    extname: "hbs",
-    defaultLayout: "main-layout",
-    layoutsDir: "views/layouts",
-  })
-); // init engine for handlebars
-app.set("view engine", "hbs"); // hbs here should be the same as the name of the engine in the app.enginer
+// app.engine(
+//   "hbs",
+//   expressHbs({
+//     extname: "hbs",
+//     defaultLayout: "main-layout",
+//     layoutsDir: "views/layouts",
+//   })
+// ); // init engine for handlebars
+// app.set("view engine", "hbs"); // hbs here should be the same as the name of the engine in the app.enginer
 // app.set('view engine', 'pug'); // init dynamic template engine for pug(jade).
+app.set('view engine', 'ejs'); //init engine for ejs
 app.set("views", "views"); // init templates folder.
 
 const adminData = require("./routes/admin");

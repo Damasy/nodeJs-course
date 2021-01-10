@@ -3,7 +3,7 @@ const Cart = require("../models/cart");
 
 exports.getProducts = (req, res, next) => {
   // res.sendFile(path.join(rootDir, 'views', 'shop.html')) // static files
-  new Product().fetchAll((products) => {
+  new Product().fetchAll().then(([products, filedData]) => {
     res.render("shop/product-list", {
       prods: products,
       pageTitle: "Product List",
@@ -16,18 +16,21 @@ exports.getProducts = (req, res, next) => {
 };
 
 exports.getProductDetails = (req, res, next) => {
-  new Product().findById(req.params["id"], (product) => {
-    res.render("shop/product-details", {
-      product: product,
-      pageTitle: product.title,
-      path: "/products",
-    });
-  });
+  new Product()
+    .findById(req.params["id"])
+    .then(([product]) => {
+      res.render("shop/product-details", {
+        product: product[0],
+        pageTitle: product[0].title,
+        path: "/products",
+      });
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.getIndex = (req, res, next) => {
   // res.sendFile(path.join(rootDir, 'views', 'shop.html')) // static files
-  new Product().fetchAll((products) => {
+  new Product().fetchAll().then(([products, filedData]) => {
     res.render("shop/index", {
       prods: products,
       pageTitle: "Home",
@@ -41,7 +44,7 @@ exports.getIndex = (req, res, next) => {
 
 exports.getCart = (req, res, next) => {
   Cart.getProducts((cart) => {
-    new Product().fetchAll((products) => {
+    new Product().fetchAll().then(([products, filedData]) => {
       const cartProducts = [];
       for (product of products) {
         const cartProductData = cart.products.find(

@@ -1,10 +1,20 @@
-const mysql = require("mysql2");
+// >>>>>>>>>> this is ordinary way to use db directly without sequelize <<<<<<<<<<<<
+// const mysql = require("mysql2");
 
-const pool = mysql.createPool({
+// const pool = mysql.createPool({
+//   host: "localhost",
+//   user: "root",
+//   database: "node-complete",
+//   password: "root",
+// });
+
+// module.exports = pool.promise();
+
+const Sequelize = require("sequelize");
+
+const sequelize = new Sequelize("node-complete", "root", "root", {
+  dialect: "mysql",
   host: "localhost",
-  user: "root",
-  database: "node-complete",
-  password: "root",
 });
 
-module.exports = pool.promise();
+module.exports = sequelize;

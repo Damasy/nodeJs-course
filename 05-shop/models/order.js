@@ -10,7 +10,7 @@ const OrderScheme = new Scheme({
     },
   ],
   user: {
-    name: {
+    email: {
       type: String,
       required: true,
     },
